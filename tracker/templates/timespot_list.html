@@ -10,7 +10,7 @@
         <hr>
         <h3>Remédios Antes:</h3>
         <p>{{ previous.name }} ({{ previous.time }})</p>
-        <ul>
+        <ul style="font-size:1.6em">
         {% for med in previous.medicine.all %}
             <li>{{med}}</li>
         {% endfor %}
@@ -21,7 +21,7 @@
         <hr>
         <h3> Próximos remédios:</h3>
         <p>{{ next.name }} ({{next.time}})</p>
-        <ul>
+        <ul style="font-size:1.6em">
             {% for med in next.medicine.all %}
                 <li>{{med}}</li>
             {% endfor %}

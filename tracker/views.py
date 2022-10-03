@@ -16,8 +16,7 @@ class TimeSpotListView(generic.ListView):
         return context
     
     def get_queryset(self):
-        # self.current_time = datetime.now()
-        self.current_time = datetime.strptime("06:00:00", "%H:%M:%S")
+        self.current_time = datetime.now()
         queryset = {
             'previous_spot': TimeSpot.objects.filter(time__lte=self.current_time).order_by('-time')[:1],
             'next_spot': TimeSpot.objects.filter(time__gt=self.current_time)[:1],
