@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Remédios</h1>
+
+<h2>Hora atual: {{ current_time }}</h2>
+
+{% if timespots %}
+    {% for previous in timespots.previous_spot %}
+        <hr>
+        <h3>Remédios Antes:</h3>
+        <p>{{ previous.name }} ({{ previous.time }})</p>
+        <ul>
+        {% for med in previous.medicine.all %}
+            <li>{{med}}</li>
+        {% endfor %}
+        </ul>
+        <hr>
+    {% endfor %}
+    {% for next in timespots.next_spot %}
+        <hr>
+        <h3> Próximos remédios:</h3>
+        <p>{{ next.name }} ({{next.time}})</p>
+        <ul>
+            {% for med in next.medicine.all %}
+                <li>{{med}}</li>
+            {% endfor %}
+        </ul>
+        <hr>
+    {% endfor %}
+{% else %}
+<p>Não foram encontradas informações sobre horários dos remédios.</p>
+{% endif %}
+{% endblock %}
