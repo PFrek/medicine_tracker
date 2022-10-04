@@ -3,32 +3,55 @@
 {% block content %}
 <h1>Remédios</h1>
 
-<h2>Hora atual: {{ current_time }}</h2>
-
 {% if timespots %}
     {% for previous in timespots.previous_spot %}
-        <hr>
-        <h3>Remédios Antes:</h3>
-        <p>{{ previous.name }} ({{ previous.time }})</p>
-        <ul style="font-size:1.6em">
-        {% for med in previous.medicine.all %}
-            <li>{{med}}</li>
-        {% endfor %}
-        </ul>
-        <hr>
+        <div class="timespot-div">
+            <div class="timespot-header">
+                <h3>Remédios Antes:</h3>
+                <h5><strong>{{ previous.time }}</strong> ({{ previous.name }})</h5>
+            </div>
+            <div class="medicine-list">
+                <ul>
+                {% for med in previous.medicine.all %}
+                    <li>{{med}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
     {% endfor %}
+    <div id="time-separator">
+        <h2 id="time-header">Hora atual: {{ current_time }}</h2>
+    </div>
     {% for next in timespots.next_spot %}
-        <hr>
-        <h3> Próximos remédios:</h3>
-        <p>{{ next.name }} ({{next.time}})</p>
-        <ul style="font-size:1.6em">
-            {% for med in next.medicine.all %}
-                <li>{{med}}</li>
-            {% endfor %}
-        </ul>
-        <hr>
+        <div class="timespot-div">
+            <div class="timespot-header">
+                <h3>Próximos remédios:</h3>
+                <h5><strong>{{next.time}}</strong> ({{ next.name }})</h4>
+            </div>
+            <div class="medicine-list">
+                <ul>
+                    {% for med in next.medicine.all %}
+                        <li>{{med}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     {% endfor %}
 {% else %}
+<h2 id="time-header">Hora atual: {{ current_time }}</h2>
+
 <p>Não foram encontradas informações sobre horários dos remédios.</p>
 {% endif %}
+
+<script>
+    setInterval(function() {
+        var time = new Date();
+        const time_header = document.getElementById("time-header");
+        time_header.innerHTML = "Hora atual: " + time.toLocaleTimeString();
+        // Reload page every full minute
+        if(time.getSeconds() === 0) {
+            location.reload();
+        }
+    }, 1000);
+</script>
 {% endblock %}

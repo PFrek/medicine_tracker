@@ -1,0 +1,36 @@
+body {
+    background-color:cadetblue;
+}
+
+#time-header {
+    padding: 5px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+#time-separator {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.timespot-div {
+    background-color: lightgreen;
+    border-radius: 10px;
+}
+
+.timespot-header {
+    padding: 5px;
+    background-color: lightseagreen;
+    border: 2px solid black;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.timespot-header > h3 {
+    text-decoration: underline;
+}
+
+
+.medicine-list > ul {
+    font-size: 1.6em;
+}
